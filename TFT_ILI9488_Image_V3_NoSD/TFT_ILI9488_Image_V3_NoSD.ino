@@ -1,13 +1,11 @@
 // Simple example to embed pictures in your sketch
-// and draw on the ILI9341 display with writeRect()
+// and draw on the ILI9488 display with writeRect()
 //
 // By Frank Bösing
 //
 
 
-//#include <Wire.h>
 #include <SD.h>
-//#include <utility>
 #include <Adafruit_GFX.h>
 #include "ILI9488_t3.h"
 #include <XPT2046_Touchscreen.h>
@@ -75,6 +73,8 @@ void setup() {
 }
 
 void loop() {
+
+ 
 
   // tft.writeRect(32, 33, 256, 174, (uint16_t*)picture);
   // delay(5000);
