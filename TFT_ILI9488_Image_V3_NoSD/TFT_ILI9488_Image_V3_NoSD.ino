@@ -3,10 +3,11 @@
 //
 // By Frank Bösing
 //
-// https://forum.pjrc.com/threads/32601-SPI-Library-Issue-w-ILI9341-TFT-amp-PN532-NFC-Module-on-Teensy-3-2?p=94534&viewfull=1#post94534
-#include <Wire.h>
+
+
+//#include <Wire.h>
 #include <SD.h>
-#include <utility>
+//#include <utility>
 #include <Adafruit_GFX.h>
 #include "ILI9488_t3.h"
 #include <XPT2046_Touchscreen.h>
@@ -42,12 +43,12 @@
 // Normal Connections
 #define TFT_DC 15
 #define TFT_CS 17
-#define TFT_RST 16  // 255 = unused, connect to 3.3V
+#define TFT_RST 16
 #define TFT_MOSI 11
 #define TFT_SCLK 13
 #define TFT_MISO 12
 
-
+char str[200];
 ILI9488_t3 tft = ILI9488_t3(&SPI, TFT_CS, TFT_DC, TFT_RST, TFT_MOSI, TFT_SCLK, TFT_MISO);
 
 
@@ -56,15 +57,21 @@ const int chipSelect = 21;  //SD card chip select pin
 void setup() {
 
   //😘(●'◡'●)❤️
-  //------get that I2C cranking--
-  Wire.begin();
+
   SPI.begin();
 
   tft.begin();
   tft.setRotation(3);
   tft.fillScreen(ILI9488_BLACK);
 
-  delay(1000);
+  tft.setCursor(10, 35);
+  tft.setFont(Arial_18);
+  tft.setTextColor(ILI9488_YELLOW, 0);
+  sprintf(str, "16 bit image display test");
+  tft.println(str);
+  
+  delay(3000);
+  tft.fillScreen(ILI9488_BLACK);
 }
 
 void loop() {
