@@ -1,7 +1,7 @@
 **I got this idea from By Frank Bösing's code.**
 
 There are 2 versions. 
-the first on stores the images in microcontroller memory. The other stores the images on an SD card.
+The first on stores the images in microcontroller memory. The other stores the images on an SD card.
 If using the non SD card version, you probably wont be able to store more than 1 image in memory at a time.
 For the SD card version, I used the adafruit SD card reader over SPI.
 Store the images on the SD card in the "pics" folder.
