@@ -56,25 +56,24 @@
 uint16_t buffer[MAX_BUFFER_SIZE];
 //😘(●'◡'●)❤️
 
-//SdFat SDfast;
+
 
 ILI9488_t3 tft = ILI9488_t3(&SPI, TFT_CS, TFT_DC, TFT_RST, TFT_MOSI, TFT_SCLK, TFT_MISO);
 
-int pic_delay(20000);
+int pic_delay(20000);  // microseconds between pics
 
 const int chipSelect = 21;  //SD card chip select pin
 
 
 void setup() {
 
-  //------get that I2C cranking--
+
   Wire.begin();
   SPI.begin();
 
-  tft.begin(70000000);  //
-  tft.setRotation(3);
+  tft.begin(70000000);  //slow this down if not using a Teensy
+  tft.setRotation(3);   //rotate the screen for landscape mode
 
-  //Dfast.begin(chipSelect, SD_SCK_MHZ(100)); // Try 50 MHz or even 60 MHz
 
   if (!SD.begin(chipSelect)) {
     Serial.println("SD card failed to initialize.");
@@ -86,18 +85,8 @@ void setup() {
   delay(1000);
 
 
-
-  tft.fillScreen(ILI9488_BLACK);
-  //  tft.writeRect(32, 33, 256, 174, (uint16_t*)picture);
+  tft.fillScreen(ILI9488_BLACK); //fill the screen black
   delay(200);
-  // tft.fillScreen(ILI9488_BLACK);
-  // tft.writeRect(0, 0, 426, 320, (uint16_t*)boobs);
-  // delay(1000);
-  // tft.fillScreen(ILI9488_BLACK);
-  // tft.writeRect(0, 0, 447, 320, (uint16_t*)forrest);
-  // delay(1000);
-  tft.fillScreen(ILI9488_BLACK);
-  delay(1000);
 }
 
 void loop() {
@@ -156,12 +145,6 @@ void loop() {
     Serial.println("Failed to load image.");
   delay(pic_delay);
 
-  // if (loadPictureFromC("/girls.c", buffer, 480, 309))
-  //   Serial.println("Image loaded successfully.");
-  // else
-  //   Serial.println("Failed to load image.");
-  // delay(pic_delay);
-
   if (loadPictureFromC("/pics/leaves.c", buffer, 480, 270))
     Serial.println("Image loaded successfully.");
   else
@@ -180,20 +163,17 @@ void loop() {
     Serial.println("Failed to load image.");
   delay(pic_delay);
 
-
   if (loadPictureFromC("/pics/pebbles.c", buffer, 480, 270))
     Serial.println("Image loaded successfully.");
   else
     Serial.println("Failed to load image.");
   delay(pic_delay);
 
-
   if (loadPictureFromC("/pics/waterfall.c", buffer, 480, 319))
     Serial.println("Image loaded successfully.");
   else
     Serial.println("Failed to load image.");
   delay(pic_delay);
-
 
   if (loadPictureFromC("/pics/peacock.c", buffer, 480, 319))
     Serial.println("Image loaded successfully.");
@@ -218,7 +198,6 @@ void loop() {
   else
     Serial.println("Failed to load image.");
   delay(pic_delay);
-
 
 
 
